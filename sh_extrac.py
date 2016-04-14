@@ -1,6 +1,7 @@
 """
 Autor: P3tr1
-email: p3tr1
+email: p3tr1qs@gmail.com
+version: 0.1-alpha
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
 distributed with this work for additional information
