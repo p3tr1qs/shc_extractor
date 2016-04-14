@@ -14,19 +14,13 @@ For learnig shellcodind I use the follow article, this is a great tutorial about
 [Shellcoding for Linux and Windows Tutorial](http://www.vividmachines.com/shellcode/shellcode.html#linex2) 
 
 ###Step 1 - Write your code in Assembly
-
+``` asm
 ;hello.asm
 [SECTION .text]
-
 global _start
-
-
 _start:
-
-        jmp short ender
-
-        starter:
-
+jmp short ender
+starter:
         xor eax, eax    ;clean up the registers
         xor ebx, ebx
         xor edx, edx
@@ -43,10 +37,10 @@ _start:
         xor ebx,ebx
         int 0x80
 
-        ender:
+ender:
         call starter	;put the address of the string on the stack
         db 'H1 1 Sp3ak 4sm'
-
+```
 
 ###Step 2: Compile
 
