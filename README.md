@@ -43,10 +43,12 @@ ender:
 ```
 
 ###Step 2: Compile
-
+```
 p3tr1qs@sh3llC0d3:~$ nasm -f elf hello.asm
+
 p3tr1qs@sh3llC0d3:~$ ld -m elf_i386 -o hello hello.o
-p3tr1qs@sh3llC0d3:~$ objdump -d hello
+
+p3tr1qs@sh3llC0d3:~$ objdump -d hello<
 
 hello: formato do arquivo elf32-i386
 
@@ -81,12 +83,26 @@ Desmontagem da seção .text:
  8048088:	61                   	popa   
  8048089:	6b 20 34             	imul   $0x34,(%eax),%esp
  804808c:	73 6d                	jae    80480fb <ender+0x80>
-
+```
 ###Step 3: Generate dump file
-
+```
 p3tr1qs@sh3llC0d3:~$ objdump -d hello > hello.dmp
-
+```
 ###Step 4: Extract OpCodes, Generate C File and Execute
-
+```
 p3tr1qs@sh3llC0d3:~$ python3 sh_extrac.py -b hello.dmp -c hello.c  -e
 
+p3tr1qs@sh3llC0d3:~$ vim hello.c
+```
+
+```
+//compile command: gcc -o hello -fno-stack-protector -z execstack hello.c
+char code[] = "\xeb\x19\x31\xc0\x31\xdb\x31\xd2\x31\xc9\xb0\x04\xb3\x01\x59\xb2\x0e\xcd\x80\x31\xc0\xb0\x01\x31\xdb\xcd\x80\xe8\xe2\xff\xff\xff\x48\x31\x20\x31\x20\x53\x70\x33\x61\x6b\x20\x34\x73\x6d";
+int main(int argc, char **argv)
+{
+  int (*func)();
+  func = (int (*)()) code;
+  (int)(*func)();
+}
+
+```
