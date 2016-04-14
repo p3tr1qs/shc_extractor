@@ -15,7 +15,7 @@ For learnig shellcodind I use the follow article, this is a great tutorial about
 
 ###Step 1 - Write your code in Assembly
 
-###asm
+:::asm
 ;hello.asm
 [SECTION .text]
 
